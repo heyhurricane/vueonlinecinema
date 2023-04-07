@@ -1,22 +1,22 @@
 <template>
   <div v-if="movies.length > 0">
     <h3 style="color: #3b3bff">Movie List</h3>
-    <my-select :model-value="selectedSort"
-               @update:model-value="setFilterOptions"
-               :options="sortOptions"/>
 
-    <my-select :model-value="selectedFilter"
-    @update:model-value="setFilteredSort"
-    :options="filterOptions"/>
+    <my-filters :movies="movies"
+                @filter="paginatedMovies"
+    ></my-filters>
 
     <transition-group name="movie-list">
       <movie-item
-          v-for="movie in filteredMovies"
+          v-for="movie in paginatedMovies"
           :movie="movie"
           :key="movie.id"
-          v-show="setPaginate(movie.id - 1)"
       />
     </transition-group>
+
+    <div class="pages">
+      <div class="pages__item" v-for="(page, index) in pages" :key="index" @click="nextPage(page)">{{ page }}</div>
+    </div>
   </div>
   <h2 v-else style="color: red;">movies list is empty</h2>
 </template>
@@ -25,10 +25,27 @@
 
 import MovieItem from "@/components/MovieItem.vue";
 import {mapGetters, mapMutations, mapState} from "vuex";
-import MySelect from "@/components/MySelect.vue";
+import myFilters from "@/components/UI/MyFilters.vue";
 
 export default {
-  components: {MySelect, MovieItem},
+  components: {myFilters, MovieItem},
+  data() {
+    return {
+      limit: 4,
+      pageNumber: 1,
+      // selectedSort: '',
+      // selectedFilter: '',
+      // selectedMainOption: '',
+      // selectedOption: '',
+      filteredMovies: this.movies,
+      // sortOptions: [
+      //   {value: 'year', name: 'По году'},
+      //   {value: 'genre', name: 'По жанру'},
+      //   {value: 'rate', name: 'По рейтингу'},
+      // ],
+      // filterOptions: [],
+    }
+  },
   props: {
     movies: {
       type: Array,
@@ -36,49 +53,43 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      setFilteredSort: 'movie/SET_FILTERED_SORT',
-      setFilterOptions: 'movie/FILTER_OPTIONS',
-    }),
-    setPaginate: function (i) {
-      if (this.page == 1) {
-        return i < this.limit;
-      }
-      else {
-        console.log(this.page, "|", this.limit, "|", i);
-        return (i >= (this.limit * (this.page - 1)) && i < (this.page * this.limit));
-      }
+    nextPage(pageNum) {
+      this.pageNumber = pageNum;
     },
+
   },
   computed: {
     ...mapState({
       movies: state => state.movie.movies,
-      page: state => state.movie.page,
-      selectedSort: state => state.movie.selectedSort,
-      selectedFilter: state => state.movie.selectedFilter,
-      limit: state => state.movie.limit,
-      totalPages: state => state.movie.totalPages,
-      sortOptions: state => state.movie.sortOptions,
-      filterOptions: state => state.movie.filterOptions,
     }),
     ...mapGetters({
-      // sortedMovies: 'movie/SORTED_MOVIES',
-      filteredMovies: 'movie/FILTERED_MOVIES',
-    })
+    }),
+    pages() {
+      return Math.ceil(this.moviesFilter.length / this.limit);
+    },
+    paginatedMovies() {
+      let from = (this.pageNumber - 1) * this.limit;
+      let to = from + this.limit;
+      return this.moviesFilter.slice(from, to);
+    },
+    moviesFilter() {
+      if (this.selectedMainOption && this.selectedOption) {
+        return [...this.movies].filter(movie => movie[this.selectedMainOption] === this.selectedOption);
+      }
+      else {
+        return this.movies;
+      }
+    }
 
   },
   watch: {
-    movies(newValue) {
-      console.log(this.movies.length);
-    },
-    // filteredMovies(newValue) {
-    //   console.log(newValue);
-    // },
+    moviesFilter(newValue) {
+      this.pageNumber = 1;
+    }
   },
   name: "MovieList"
 }
 </script>
 
 <style scoped>
-
 </style>

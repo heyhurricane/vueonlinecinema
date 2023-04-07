@@ -24,35 +24,5 @@ export default {
 </script>
 
 <style scoped>
-  .movie {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    width: 95%;
-    margin: 0 auto 30px;
-    border: 2px solid black;
-    padding: 20px;
-  }
 
-  .movie__img {
-    margin-right: 20px;
-    height: 200px;
-    width: 150px;
-    border: 2px solid black;
-  }
-
-  .movie__info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    max-width: 400px;
-    width: 100%;
-  }
-
-  .movie__name {
-    margin-bottom: 20px;
-    font-size: 35px;
-  }
 </style>

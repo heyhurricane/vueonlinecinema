@@ -14,70 +14,12 @@ export const movieModule = {
             { id: 11, name: 'Джордж из джунглей', img: 'george-in-the-jungle', year: 1997, genre: "comedy", rate: 3, desc: 'Джордж вырос в самом сердце африканских джунглей. Среди горилл. Они научили своего воспитанника прыгать по деревьям... но не показали, как приземляться.'},
         ],
         isMoviesLoading: false,
-        selectedSort: '',
-        selectedFilter: '',
-        selectedMainOption: '',
-        selectedOption: '',
-        page: 1,
-        limit: 4,
-        totalPages: 0,
-        sortOptions: [
-            {value: 'year', name: 'По году'},
-            {value: 'genre', name: 'По жанру'},
-            {value: 'rate', name: 'По рейтингу'},
-        ],
-        filterOptions: [],
     }),
     getters: {
-        MOVIES(state) {
-            return state.movies
-        },
-        FILTERED_MOVIES(state, getters) {
-            if (state.selectedMainOption && state.selectedOption) {
-                console.log([...state.movies].filter(movie => movie[state.selectedMainOption] === state.selectedOption));
-                return [...state.movies].filter(movie => movie[state.selectedMainOption] === state.selectedOption);
-            }
-            else {
-                return getters.MOVIES;
-            }
-
-        }
     },
     mutations: {
-        SET_TOTAL_PAGES(state, totalPages) {
-            state.totalPages = totalPages;
-        },
-        CURRENT_PAGE(state, num) {
-            state.page = num;
-        },
-        FILTER_OPTIONS(state, selectedSort) {
-            state.selectedMainOption = selectedSort;
-            state.filterOptions = state.movies.map(v => ({value: v[selectedSort], name: v[selectedSort]}));
-
-            state.filterOptions = [...new Map(state.filterOptions.map(item => [item.value, item])).values()]
-                                    .sort(function(a, b) {
-                                        return a.value - b.value;
-                                    });
-
-        },
-        SET_FILTERED_SORT(state, selectedFilter) {
-            if (state.selectedMainOption == 'year' || state.selectedMainOption == 'rate') {
-                state.selectedOption = Number(selectedFilter);
-            }
-            else {
-                state.selectedOption = selectedFilter;
-            }
-
-        },
-
     },
     actions: {
-        countPages({state, commit}) {
-            commit("SET_TOTAL_PAGES", Math.ceil(state.movies.length / state.limit));
-        },
-        // showingMovieList({state, commit}) {
-        //     commit
-        // }
     },
     namespaced: true
 }

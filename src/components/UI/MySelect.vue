@@ -1,5 +1,5 @@
 <template>
-  <select class="select" v-bind="modelValue" @change="changeOption">
+  <select class="select" :value="modelValue" @change="changeOption">
     <option disabled selected value="">Выберите из списка</option>
     <option v-for="option in options" :key="option.value" :value="option.value">{{ option.name }}</option>
   </select>
@@ -26,7 +26,4 @@ export default {
 </script>
 
 <style scoped>
-  .select {
-    margin-bottom: 30px;
-  }
 </style>
