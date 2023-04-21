@@ -13,7 +13,9 @@ const routes = [
     component: CartView
   },
   {
-    path: '/movie',
+    path: '/movie/:id',
+    props: true,
+    name: "MoviePage",
     component: MovieView
   }
 ]

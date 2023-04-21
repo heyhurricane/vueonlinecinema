@@ -31,20 +31,21 @@ export default {
       required: true
     },
   },
+  emits: ['filter'],
   methods: {
     setFilteredSort(selectedFilter) {
       if (this.selectedMainOption == 'year' || this.selectedMainOption == 'rate') {
         this.selectedOption = Number(selectedFilter);
-        this.$emit('filter', this.selectedMainOption, this.selectedOption);
       }
       else {
         this.selectedOption = selectedFilter;
-        this.$emit('filter', this.selectedMainOption, this.selectedOption)
       }
+      this.$emit('filter', this.selectedMainOption, this.selectedOption);
     },
     setFilterOptions(selectedSort) {
       if (this.selectedMainOption !== selectedSort) {
         this.selectedOption = '';
+        this.$emit('filter', this.selectedMainOption, this.selectedOption);
       }
       this.selectedMainOption = selectedSort;
       this.filterOptions = this.movies.map(v => ({value: v[selectedSort], name: v[selectedSort]}));

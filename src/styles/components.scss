@@ -2,6 +2,25 @@
   margin-bottom: 30px;
 }
 
+.dialog {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+}
+
+.dialog__content {
+  padding: 20px;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  min-height: 50px;
+  min-width: 300px;
+}
+
 .movie {
   display: flex;
   justify-content: center;
@@ -31,5 +50,117 @@
   &__name {
     margin-bottom: 20px;
     font-size: 35px;
+  }
+
+  &__desc {
+    margin-bottom: 15px;
+  }
+
+  &__link {
+    display: block;
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    text-decoration: none;
+    background-color: #ffd429;
+    border-radius: 15px;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__tickets {
+    display: flex;
+  }
+}
+
+.cart {
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 300px;
+  width: 95%;
+  border: 2px solid black;
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  &__movie {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__date {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  &__tickets {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    &-row {
+      margin-right: 12px;
+    }
+  }
+
+  &__btn {
+    display: block;
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    text-decoration: none;
+    background-color: #ffd429;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown {
+  position: relative;
+
+  &__icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url("/public/img/cart.png") no-repeat center / contain;
+    cursor: pointer;
+    border: none;
+  }
+
+  &__content {
+    position: absolute;
+    right: 0;
+    background: #FFFFFF;
+    width: 200px;
+    top: 40px;
   }
 }

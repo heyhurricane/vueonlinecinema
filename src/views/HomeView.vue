@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Online Cinema "Vue"</h1>
-    <movie-list :movies="movies"/>
+    <movie-list :movies="filteredMovies"/>
 
   </div>
 </template>
@@ -18,14 +18,14 @@ export default {
   },
   data() {
     return {
-
+      filteredMovies: []
     }
   },
   methods: {
 
   },
   mounted() {
-
+    this.filteredMovies = this.movies;
   },
   computed: {
     ...mapState({
@@ -36,6 +36,7 @@ export default {
       // limit: 'movie/LIMIT',
       // totalPages: 'movie/TOTAL_PAGES'
     }),
+
   }
 }
 </script>

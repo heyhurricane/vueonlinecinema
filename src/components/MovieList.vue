@@ -3,7 +3,7 @@
     <h3 style="color: #3b3bff">Movie List</h3>
 
     <my-filters :movies="movies"
-                @filter="paginatedMovies"
+                @filter="setSelectedOptions"
     ></my-filters>
 
     <transition-group name="movie-list">
@@ -35,8 +35,8 @@ export default {
       pageNumber: 1,
       // selectedSort: '',
       // selectedFilter: '',
-      // selectedMainOption: '',
-      // selectedOption: '',
+      selectedMainOption: '',
+      selectedOption: '',
       filteredMovies: this.movies,
       // sortOptions: [
       //   {value: 'year', name: 'По году'},
@@ -52,15 +52,19 @@ export default {
       required: true
     },
   },
+  events: ['filter'],
   methods: {
     nextPage(pageNum) {
       this.pageNumber = pageNum;
     },
 
+    setSelectedOptions(mainOption, option) {
+      this.selectedMainOption = mainOption;
+      this.selectedOption = option;
+    }
   },
   computed: {
     ...mapState({
-      movies: state => state.movie.movies,
     }),
     ...mapGetters({
     }),

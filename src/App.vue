@@ -1,7 +1,10 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/cart">Cart</router-link>
+  <nav class="navigation">
+    <div class="navigation__links">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/cart">Cart</router-link>
+    </div>
+    <my-dropdown></my-dropdown>
   </nav>
   <router-view/>
 </template>
@@ -28,3 +31,6 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+<script setup>
+import MyDropdown from "@/components/UI/MyDropdown.vue";
+</script>
