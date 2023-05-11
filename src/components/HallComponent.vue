@@ -30,7 +30,7 @@ export default {
       tickets: []
     }
   },
-  emits: ['click'],
+  emits: ['pickingPlace'],
   methods: {
     pickPlace(row, place) {
       if (this.hallMap[row][place] === 0) {
@@ -42,7 +42,7 @@ export default {
         const index = this.tickets.findIndex(x => x.row === row && x.place === place);
         this.tickets.splice(index, 1);
       }
-      this.$emit('click', this.tickets);
+      this.$emit('pickingPlace', this.tickets);
     },
 
   },
