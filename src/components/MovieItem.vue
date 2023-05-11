@@ -40,6 +40,7 @@ export default {
       buyTicketPopupVisible: false,
       pickedSession: '',
       ticket: {},
+      tickets: []
     }
   },
   props: {
