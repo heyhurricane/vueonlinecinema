@@ -3,8 +3,8 @@
     <my-dialog v-model:show="buyTicketPopupVisible">
       <div class="movie__name"><strong>{{ movie.name }}</strong></div>
       <div class="movie__session"><strong>{{ pickedSession }}</strong></div>
-      <hall-component></hall-component>
-      <button class="movie__buy-tickets">Добавить в корзину</button>
+      <hall-component @click="selectedPlaces"></hall-component>
+      <button class="movie__buy-tickets" @click="addingToCart">Добавить в корзину</button>
     </my-dialog>
 
     <div class="movie__img" :style="{ background: `url(/img/movies/${movie.img}.webp) no-repeat center / cover`  }"></div>
@@ -32,12 +32,14 @@
 <script>
 import hallComponent from "@/components/HallComponent.vue";
 import myDialog from "@/components/UI/MyDialog.vue";
+import {mapState} from "vuex";
 export default {
   components: {hallComponent, myDialog},
   data() {
     return {
       buyTicketPopupVisible: false,
-      pickedSession: ''
+      pickedSession: '',
+      ticket: {},
     }
   },
   props: {
@@ -51,12 +53,28 @@ export default {
       return this.$route.name === 'MoviePage';
     },
 
+    ...mapState({
+      cartTickets: state => state.tickets.tickets,
+    }),
   },
   methods: {
     showPopup(value) {
       this.buyTicketPopupVisible = true;
       this.pickedSession = value.target.textContent;
     },
+    selectedPlaces(ticket) {
+      this.tickets = ticket;
+    },
+    addingToCart() {
+      this.ticket['movie'] = this.movie.name;
+      this.ticket['session'] = this.pickedSession;
+      this.ticket['places'] = [];
+      this.tickets.forEach((ticket)=> {
+        this.ticket['places'].push(ticket);
+      });
+      this.$store.commit('tickets/ADD_TICKET', this.ticket);
+      this.buyTicketPopupVisible = false;
+    }
   },
   name: "MovieItem"
 }

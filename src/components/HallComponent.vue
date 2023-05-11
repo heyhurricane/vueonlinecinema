@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "HallComponent",
   data() {
@@ -28,9 +30,9 @@ export default {
       tickets: []
     }
   },
+  emits: ['click'],
   methods: {
     pickPlace(row, place) {
-      console.log(this.hallMap[row][place]);
       if (this.hallMap[row][place] === 0) {
         this.hallMap[row][place] = 2;
         this.tickets.push({row: row, place: place});
@@ -40,8 +42,10 @@ export default {
         const index = this.tickets.findIndex(x => x.row === row && x.place === place);
         this.tickets.splice(index, 1);
       }
-    }
-  }
+      this.$emit('click', this.tickets);
+    },
+
+  },
 }
 </script>
 

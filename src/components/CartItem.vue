@@ -1,16 +1,12 @@
 <template>
   <div class="cart">
     <div class="cart__wrap">
-      <span class="cart__movie">Шрэк</span>
-      <span class="cart__date">24.05.2023 18:00</span>
+      <span class="cart__movie">{{ cartTickets.movie }}</span>
+      <span class="cart__date">{{ cartTickets.session }}</span>
       <div class="cart__tickets">
-        <div class="cart__tickets-item">
-          <span class="cart__tickets-row">Ряд: <b>8</b></span>
-          <span class="cart__tickets-place">Место: <b>5</b></span>
-        </div>
-        <div class="cart__tickets-item">
-          <span class="cart__tickets-row">Ряд: <b>8</b></span>
-          <span class="cart__tickets-place">Место: <b>6</b></span>
+        <div class="cart__tickets-item" v-for="ticket in cartTickets.places">
+          <span class="cart__tickets-row">Ряд: <b>{{ ticket.row}}</b></span>
+          <span class="cart__tickets-place">Место: <b>{{ ticket.place}}</b></span>
         </div>
       </div>
 
@@ -20,8 +16,16 @@
 </template>
 
 <script>
+
+import {mapState} from "vuex";
+
 export default {
-  name: "cart"
+  name: "cart",
+  computed: {
+    ...mapState({
+      cartTickets: state => state.tickets.tickets,
+    }),
+  },
 }
 </script>
 
