@@ -3,7 +3,7 @@
     <my-dialog v-model:show="buyTicketPopupVisible">
       <div class="movie__name"><strong>{{ movie.name }}</strong></div>
       <div class="movie__session"><strong>{{ pickedSession }}</strong></div>
-      <hall-component @pickingPlace="selectedPlaces"></hall-component>
+      <hall-component @pickingPlace="selectedPlaces" :session="pickedSession" :movie="movie.name"></hall-component>
       <button class="movie__buy-tickets" @click="addingToCart">Добавить в корзину</button>
     </my-dialog>
 
