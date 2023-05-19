@@ -33,14 +33,14 @@
 import hallComponent from "@/components/HallComponent.vue";
 import myDialog from "@/components/UI/MyDialog.vue";
 import {mapState} from "vuex";
+
+let tickets = [];
 export default {
   components: {hallComponent, myDialog},
   data() {
     return {
       buyTicketPopupVisible: false,
       pickedSession: '',
-      ticket: {},
-      tickets: []
     }
   },
   props: {
@@ -60,21 +60,36 @@ export default {
   },
   methods: {
     showPopup(value) {
+      this.$router.replace({ path: this.$route.path, query: { session: value.target.textContent } });
       this.buyTicketPopupVisible = true;
       this.pickedSession = value.target.textContent;
     },
     selectedPlaces(ticket) {
-      this.tickets = ticket;
+      tickets = ticket;
+      let param = '';
+      ticket.forEach((t) => {
+        param += t.row + '-' + t.place + ";";
+      });
+      this.$router.replace({ path: this.$route.path, query: { session: this.pickedSession, places: param } });
     },
     addingToCart() {
-      this.ticket['movie'] = this.movie.name;
-      this.ticket['session'] = this.pickedSession;
-      this.ticket['places'] = [];
-      this.tickets.forEach((ticket)=> {
-        this.ticket['places'].push(ticket);
+      let ticket = {};
+      ticket.movie = this.movie.name;
+      ticket.session = this.pickedSession;
+      ticket.places = [];
+      tickets.forEach((item)=> {
+        ticket.places.push(item);
       });
-      this.$store.commit('tickets/ADD_TICKET', this.ticket);
+      this.$store.commit('tickets/ADD_TICKET', ticket);
       this.buyTicketPopupVisible = false;
+      this.$router.replace({ path: this.$route.path });
+
+    }
+  },
+  mounted() {
+    if (this.$route.query.session) {
+      this.pickedSession = this.$route.query.session;
+      this.buyTicketPopupVisible = true;
     }
   },
   name: "MovieItem"

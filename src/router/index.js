@@ -10,7 +10,8 @@ const routes = [
   },
   {
     path: '/cart',
-    component: CartView
+    component: CartView,
+    name: "CartPage",
   },
   {
     path: '/movie/:id',
