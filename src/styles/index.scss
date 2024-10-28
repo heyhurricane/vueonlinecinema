@@ -1,0 +1,19 @@
+@import './components';
+
+.pages {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+
+  &__item {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

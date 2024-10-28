@@ -1,0 +1,320 @@
+.select {
+  margin-bottom: 30px;
+}
+
+.dialog {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+}
+
+.dialog__content {
+  padding: 20px;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  min-height: 50px;
+  min-width: 300px;
+}
+
+.movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  width: 95%;
+  margin: 0 auto 30px;
+  border: 2px solid black;
+  padding: 20px;
+
+  &__img {
+    margin-right: 20px;
+    height: 200px;
+    width: 150px;
+    border: 2px solid black;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  &__name {
+    margin-bottom: 20px;
+    font-size: 35px;
+  }
+
+  &__desc {
+    margin-bottom: 15px;
+  }
+
+  &__link {
+    display: block;
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    text-decoration: none;
+    background-color: #ffd429;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__tickets {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__session {
+    margin-bottom: 10px;
+  }
+
+  &__buy-tickets {
+    margin-top: 10px;
+    background-color: #ffd429;
+    border-radius: 15px;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 250px;
+    height: 45px;
+    line-height: 45px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__sessions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    &-text {
+      flex-basis: 100%;
+    }
+
+    &-item {
+      background-color: #ffd429;
+      border-radius: 15px;
+      color: black;
+      text-align: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      width: 180px;
+      height: 45px;
+      line-height: 45px;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+}
+
+.cart {
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 300px;
+  width: 95%;
+  border: 2px solid black;
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  &__movie {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__date {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  &__tickets {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    &-row {
+      margin-right: 12px;
+    }
+  }
+
+  &__btn {
+    display: block;
+    width: 180px;
+    height: 45px;
+    line-height: 45px;
+    text-decoration: none;
+    background-color: #ffd429;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__orders {
+    margin: 0 auto;
+    width: 500px;
+  }
+
+  &__order {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+
+    &-info {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    &-movie {
+      margin: 0 20px 10px 0;
+    }
+
+    &-date {
+      margin: 0 0 10px 0;
+    }
+
+    &-tickets {
+      flex-basis: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &-item {
+        &:first-of-type {
+          margin-bottom: 5px;
+        }
+      }
+
+      &-row {
+        margin-right: 10px;
+      }
+    }
+  }
+
+
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown {
+  position: relative;
+
+  &__icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url("/public/img/cart.png") no-repeat center / contain;
+    cursor: pointer;
+    border: none;
+  }
+
+  &__content {
+    position: absolute;
+    right: 0;
+    background: #FFFFFF;
+    width: 200px;
+    top: 40px;
+  }
+}
+
+.dialog {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: flex;
+
+  &__content {
+    padding: 20px;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    min-height: 50px;
+    min-width: 300px;
+  }
+}
+
+
+.hall {
+  display: grid;
+  gap: 5px;
+  &__screen {
+    background-color: black;
+    width: 100%;
+    height: 30px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  &__row {
+    display: grid;
+    grid-template-columns: 20px 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 5px;
+  }
+  &__place {
+    height: 70px;
+    width: 70px;
+    background-color: #b9b9b9;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--selected {
+      background-color: #ffd429;
+    }
+
+    &--disabled {
+      background-color: grey;
+      pointer-events: none !important;
+    }
+  }
+}
